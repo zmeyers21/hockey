@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+  <div class="card" *ngFor="let card of cards" (click)="cardClick(card)">
+    {{ card.title }}
+  </div>
+</div>
+
+<!-- <div class="dashboard-container">
+  <div class="title">
+    {{ title }}
+  </div>
+  <div class="chart"> -->
+    <!-- <app-bar-chart-horizontal
+      [data]="top40Songs"
+      yAxisLabel="Plays"
+      xAxisLabel="Songs"></app-bar-chart-horizontal> -->
+    <!-- <app-line-chart
+      [data]="weeklyPlays"
+      yAxisLabel="Plays"
+      xAxisLabel="Week"></app-line-chart> -->
+    <!-- <app-bar-chart-horizontal-multi
+      [data]="weeklyTimeSlotSongs"
+      yAxisLabel="Plays"
+      xAxisLabel="Week"></app-bar-chart-horizontal-multi> -->
+  <!-- </div>
+</div> -->

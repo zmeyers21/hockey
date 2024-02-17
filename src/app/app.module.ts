@@ -1,21 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './core/modules/material.module';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     SharedModule,
-    CoreModule
+    AppRoutingModule,
+    HttpClientModule,
+    MaterialModule,
+    AuthModule.forRoot({
+      ...env.auth.clientId,
+      ...env.auth.domain
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

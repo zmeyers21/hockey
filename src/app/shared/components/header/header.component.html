@@ -1,13 +1,14 @@
-<div class="header-container">
-  <div class="button-container flex">
-    <div class="w-pct-100">
-      <mat-icon class="menu-icon right" *ngIf="!menuActive$" (click)="toggleMenu()">menu</mat-icon>
-      <mat-icon class="menu-icon right" *ngIf="menuActive$" (click)="toggleMenu()">close</mat-icon>
-    </div>
+<div class="header-lg" *ngIf="auth.isAuthenticated$ | async">
+  <div class="tab" [ngClass]="{'active': isActiveTab(tab)}" *ngFor="let tab of tabs$" (click)="navigate(tab)">
+    {{ tab.title | titlecase }}
   </div>
-  <div class="menu" *ngIf="menuActive$">
-    <div class="tab" *ngFor="let tab of tabs$" (click)="navigate(tab.route)">
-      {{tab.title}}
-    </div>
-  </div>
+</div>
+
+<div class="header-sm" *ngIf="auth.isAuthenticated$ | async">
+  <mat-icon aria-hidden="false" aria-label="Menu" [fontIcon]="menuIcon" class="menu-icon" (click)="toggleMenu()"></mat-icon>
+</div>
+
+<div class="menu-content" [@openClose]="menuState" *ngIf="auth.isAuthenticated$ | async">
+  <div class="menu-item pointer hover" *ngFor="let tab of tabs$" (click)="navigate(tab)">{{ tab.title | titlecase }}</div>
+  <div class="menu-item center"><app-authentication-button></app-authentication-button></div>
 </div>

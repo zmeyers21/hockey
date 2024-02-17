@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+
+.dashboard-container {
+  height: 100%;
+  width: calc(100% - 48px);
+  padding: 0 12px;
+  overflow-y: auto;
+  padding: 24px;
+  justify-content: center;
+
+  .title {
+    height: 36px;
+    line-height: 36px;
+    width: 100%;
+    text-align: center;
+    font: 500 18px Arial;
+  }
+
+  .chart {
+    width: 900px;
+    height: 450px;
+    padding: 48px;
+    margin: 0 auto;
+    @include mat.elevation(3);
+  }
+
+  .card {
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 4px;
+    margin: 12px auto;
+    text-align: center;
+    @include mat.elevation(3);
+  }
+
+  @media only screen and (max-width: 700px) {
+    .card {
+      width: 70%;
+    }
+  }
+  
+  @media only screen and (min-width: 701px) {
+    .card {
+      width: 300px;
+    }
+  }
+  
+}

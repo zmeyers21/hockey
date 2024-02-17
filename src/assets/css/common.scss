@@ -5,12 +5,29 @@ $px: 'px';
 $pct: '%';
 
 @for $val from 0 through $max-px {
+  
+  // font size
+  .f-#{$val} {
+    font-size: #{$val}#{$px} !important;
+  }
+
+  // width
   .w-#{$val} {
     width: #{$val}#{$px} !important;
   }
+
+  // height
   .h-#{$val} {
     height: #{$val}#{$px} !important;
   }
+
+  // equal height and width
+  .h-w-#{$val} {
+    height: #{$val}#{$px} !important;
+    width: #{$val}#{$px} !important;
+  }
+
+  // padding
   .p-t-#{$val} {
     padding-top: #{$val}#{$px} !important;
   }
@@ -26,8 +43,13 @@ $pct: '%';
   .p-r-#{$val} {
     padding-right: #{$val}#{$px} !important;
   }
+
+  // margin
   .m-t-#{$val} {
     margin-top: #{$val}#{$px} !important;
+  }
+  .m-t-n-#{$val} {
+    margin-top: -#{$val}#{$px} !important;
   }
   .m-b-#{$val} {
     margin-bottom: #{$val}#{$px} !important;
@@ -38,6 +60,12 @@ $pct: '%';
   .m-r-#{$val} {
     margin-right: #{$val}#{$px} !important;
   }
+  .m-r-pct-#{$val} {
+    margin-right: #{$val}#{$pct} !important;
+  }
+  .m-l-pct-#{$val} {
+    margin-left: #{$val}#{$pct} !important;
+  }
 }
 
 @for $val from 0 through $max-pct {
@@ -47,4 +75,8 @@ $pct: '%';
   .h-pct-#{$val} {
     height: #{$val}#{$pct} !important;
   }
+}
+
+.center {
+  text-align: center !important;
 }
