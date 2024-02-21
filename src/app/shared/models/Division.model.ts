@@ -3,7 +3,7 @@ import { DivisionStatus } from "../enums/DivisionStatus.enum";
 import { State } from "../enums/State.enum";
 
 export interface Division {
-  _id?: string;
+  _id: string;
   day: DayOfWeek;
   city: string;
   state: State;

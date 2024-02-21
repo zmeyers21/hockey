@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
 .dashboard-container {
-  height: 100%;
+  height: calc(100% - 96px);
   width: calc(100% - 48px);
   padding: 0 12px;
   overflow-y: auto;
