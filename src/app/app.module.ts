@@ -22,7 +22,7 @@ import { environment as env } from '../environments/environment';
     MaterialModule,
     AuthModule.forRoot({
       ...env.auth.clientId,
-      ...env.auth.domain
+      ...env.auth.domain,
     }),
   ],
   providers: [],

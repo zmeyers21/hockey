@@ -16,14 +16,6 @@
     font: 500 18px Arial;
   }
 
-  .chart {
-    width: 900px;
-    height: 450px;
-    padding: 48px;
-    margin: 0 auto;
-    @include mat.elevation(3);
-  }
-
   .card {
     padding: 12px;
     font-size: 18px;

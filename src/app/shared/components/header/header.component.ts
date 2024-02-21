@@ -32,10 +32,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.tabs$ = [
       { title: 'home', route: 'dashboard' },
-      { title: 'charts', route: 'charts' },
-      { title: 'trending', route: 'trending' },
-      { title: 'artists', route: 'artists' },
-      { title: 'stations', route: 'stations' }
+      { title: 'divisions', route: 'divisions' },
+      { title: 'players', route: 'players' },
+      { title: 'draft', route: 'draft' }
     ];
     this.navigate(this.tabs$[0]);
   }

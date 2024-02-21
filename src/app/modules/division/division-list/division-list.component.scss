@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+
+.division-container {
+  height: calc(100% - 24px);
+  overflow-y: auto;
+  width: calc(100% - 24px);
+  padding: 12px;
+
+  .row {
+    width: calc(100% - 12px);
+    padding: 14px 0;
+    margin: 6px 6px;
+    text-align: center;
+    font: 600 14px Arial;
+    color: #959595;
+    @include mat.elevation(3);
+  }
+}

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './shared/services/api.service';
-import { tap } from 'rxjs';
+import { AuthenticationService } from './shared/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +8,10 @@ import { tap } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.apiService.getAllDivisions().pipe(
-      tap((res) => console.log('divisions: ', res))
-    ).subscribe();
+    this.authService.loadToken();
   }
 
 }

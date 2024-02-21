@@ -6,6 +6,6 @@ export const environment = {
   auth: {
     domain,
     clientId,
-    redirectUri: window.location.origin,
+    redirectUri: window.location.origin
   },
 };

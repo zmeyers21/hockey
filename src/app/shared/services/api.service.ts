@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Division } from '../models/Division.model';
+import { Player } from '../models/Player.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +12,20 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  // Division Methods
-  getAllDivisions(): Observable<Division[]> {
-    const url = `${this.baseUrl}/divisions`;
+  // Player Methods
+  getAllPlayers(): Observable<Player[]> {
+    const url = `${this.baseUrl}/players`;
     return this.get(url);
   }
 
-  getDivision(id: string): Observable<Division> {
-    const url = `${this.baseUrl}/divisions/${id}`;
+  getPlayer(id: string): Observable<Player> {
+    const url = `${this.baseUrl}/players/${id}`;
     return this.get(url);
   }
 
   // Generic methods
-  get(url: string, options?: any): Observable<any> {
-    return this.http.get(url, options).pipe(
+  get(path: string, ): Observable<any> {
+    return this.http.get(this.baseUrl + path, { headers: this.accessHeaders }).pipe(
       catchError((err) => this.handleHttpError(err))
     );
   }
@@ -48,6 +48,12 @@ export class ApiService {
       // Unauthorized
     }
     return throwError(err);
+  }
+
+  private get accessHeaders(): any {
+    return {
+      Authorization: `Bearer ${localStorage.getItem('bearer-token')}`
+    };
   }
 
 }

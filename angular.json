@@ -73,6 +73,11 @@
               "browserTarget": "hockey:build:development"
             }
           },
+          "options": {
+            "sslKey": "ssl/server.key",
+            "sslCert": "ssl/server.crt",
+            "ssl": false
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
