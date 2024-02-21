@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Player } from 'src/app/shared/models/Player.model';
 
@@ -7,13 +7,9 @@ import { Player } from 'src/app/shared/models/Player.model';
   templateUrl: './player-details.component.html',
   styleUrls: ['./player-details.component.scss']
 })
-export class PlayerDetailsComponent implements OnInit {
+export class PlayerDetailsComponent {
 
   constructor(private dialogRef: MatDialogRef<PlayerDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public player: Player) { }
-
-  ngOnInit(): void {
-    
-  }
 
 }
