@@ -25,10 +25,8 @@ export class PlayerListComponent extends BaseWrapperDirective implements OnInit 
     }
 
   ngOnInit(): void {
-    this.loaderOn();
     this.service.getAll().pipe(
-      tap((res) => this.players = this.mapPlayers(res)),
-      tap(() => this.loaderOff())
+      tap((res) => this.players = this.mapPlayers(res))
     ).subscribe();
   }
 
@@ -46,10 +44,8 @@ export class PlayerListComponent extends BaseWrapperDirective implements OnInit 
   }
 
   rowClick(id: string): void {
-    this.loaderOn();
     this.service.getOne(id).pipe(
-      tap((res) => this.dialogService.playerDetails(res)),
-      tap(() => this.loaderOff())
+      tap((res) => this.dialogService.playerDetails(res))
     ).subscribe();
   }
 

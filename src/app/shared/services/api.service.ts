@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Player } from '../models/Player.model';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class ApiService {
 
   private baseUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private loaderService: LoaderService) { }
 
   // Player Methods
   getAllPlayers(): Observable<Player[]> {
@@ -25,7 +27,9 @@ export class ApiService {
 
   // Generic methods
   get(path: string, ): Observable<any> {
+    this.loaderService.on();
     return this.http.get(this.baseUrl + path, { headers: this.accessHeaders }).pipe(
+      tap(() => this.loaderService.off()),
       catchError((err) => this.handleHttpError(err))
     );
   }
