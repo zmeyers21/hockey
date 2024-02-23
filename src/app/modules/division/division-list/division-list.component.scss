@@ -11,7 +11,8 @@
     padding: 14px 0;
     margin: 6px 6px;
     text-align: center;
-    font: 600 14px Arial;
+    font-weight: 600;
+    font-size: 14px;
     color: #959595;
     @include mat.elevation(3);
   }

@@ -13,10 +13,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   exports: [
     CommonModule,
+    FormsModule,
     MatTableModule,
     MatTabsModule,
     MatSortModule,
@@ -30,7 +33,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatIconModule,
     MatMenuModule,
     MatTooltipModule,
-    FormsModule,
+    MatSliderModule,
+    MatRippleModule,
     ReactiveFormsModule
   ],
   declarations: [ ]

@@ -1,4 +1,17 @@
 <div class="dashboard-container">
+
+  <div class="title">
+    WELCOME!
+  </div>
+
+  <div class="image-container">
+    <img class="skater">
+  </div>
+
+  <div class="button-container">
+    <button class="btn btn-primary btn-block" (click)="startAudio()">PLAY AUDIO</button>
+  </div>
+
   <div class="card" *ngFor="let card of cards" (click)="cardClick(card)">
     {{ card.title }}
   </div>

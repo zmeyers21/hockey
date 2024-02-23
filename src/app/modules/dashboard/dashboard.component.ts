@@ -13,5 +13,16 @@ export class DashboardComponent {
   cardClick(card: NavCard): void {
     console.log('card: ', card);
   }
+
+  startAudio() {
+    this.playAudio();
+  }
+
+  playAudio(){
+    let audio = new Audio();
+    audio.src = '../../assets/audio/nhl94-intro.mp3';
+    audio.load();
+    audio.play();
+  }
   
 }

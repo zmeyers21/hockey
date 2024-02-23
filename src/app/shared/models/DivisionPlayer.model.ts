@@ -9,9 +9,10 @@ export class DivisionPlayer implements Player {
   email: string;
   phone?: string;
   
+  divisionId: string;
   positions: Position[];
   rating: number;
-  skills?: SkillRating;
+  skills: SkillRating;
 
   constructor() { }
 }

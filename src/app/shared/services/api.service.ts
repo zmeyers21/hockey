@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Player } from '../models/Player.model';
 import { LoaderService } from './loader.service';
+import { DivisionPlayer } from '../models/DivisionPlayer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,15 @@ export class ApiService {
     return this.get(url);
   }
 
+  updatePlayer(player: DivisionPlayer): Observable<DivisionPlayer> {
+    const url = `${this.baseUrl}/players/skills`;
+    return this.put(url, player);
+  }
+
   // Generic methods
-  get(path: string, ): Observable<any> {
+  get(url: string): Observable<any> {
     this.loaderService.on();
-    return this.http.get(this.baseUrl + path, { headers: this.accessHeaders }).pipe(
+    return this.http.get(url, { headers: this.accessHeaders }).pipe(
       tap(() => this.loaderService.off()),
       catchError((err) => this.handleHttpError(err))
     );

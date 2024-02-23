@@ -1,0 +1,28 @@
+.player-details-container {
+  width: calc(100% - 24px);
+  height: calc(100% - 68px);
+  overflow-y: auto;
+  padding: 12px;
+
+  .skills-label-container {
+    width: calc(100% - 24px);
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 10px 0;
+    font-size: 24px;
+
+    .skills-value-label {
+      float: right;
+    }
+  }
+
+  mat-slider {
+    scale: .9;
+    width: calc(100% - 24px);
+  }
+}
+
+.action-container {
+  width: calc(100% - 24px);
+  padding: 12px;
+}

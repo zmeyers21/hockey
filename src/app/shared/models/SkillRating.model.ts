@@ -1,12 +1,12 @@
 export interface SkillRating {
-  skating: number;
   agility: number;
   speed: number;
-  offensiveAwareness: number;
-  defensiveAwareness: number;
-  shooting: string;
-  passing: string;
+  offAware: number;
+  defAware: number;
+  shotPower: number;
+  shotAccuracy: number;
   stickHandling: number;
+  passing: number;
   endurance: number;
-  xFactor: boolean;
+  xFactor: number;
 }

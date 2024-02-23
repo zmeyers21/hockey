@@ -13,7 +13,25 @@
     line-height: 36px;
     width: 100%;
     text-align: center;
-    font: 500 18px Arial;
+    font: 500 36px nhl;
+  }
+
+  .image-container {
+    width: 100%;
+    padding: 24px 0;
+    text-align: center;
+
+    .skater {
+      content: url('../../../assets/images/skater-1.gif');
+      height: 128px;
+      width: auto;
+    }
+  }
+
+  .button-container {
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
   }
 
   .card {
