@@ -9,10 +9,8 @@
   </div>
 
   <div class="button-container">
-    <button class="btn btn-primary btn-block" (click)="startAudio()">PLAY AUDIO</button>
+    <button *ngIf="!audioPlaying" class="btn btn-primary btn-block" (click)="startAudio()">PLAY AUDIO</button>
+    <button *ngIf="audioPlaying" class="btn btn-primary btn-block" (click)="stopAudio()">STOP AUDIO</button>
   </div>
-
-  <div class="card" *ngFor="let card of cards" (click)="cardClick(card)">
-    {{ card.title }}
-  </div>
+  
 </div>

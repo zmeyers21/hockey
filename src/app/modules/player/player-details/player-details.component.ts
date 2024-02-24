@@ -42,6 +42,8 @@ export class PlayerDetailsComponent implements OnInit {
       }
     });
 
+    this.fields = this.fields.filter(x => x.name != 'x factor');
+
     console.log('overall rating: ', this.ratingService.getOverallRating(this.player));
   }
 
@@ -66,15 +68,14 @@ export class PlayerDetailsComponent implements OnInit {
 
   addDefaultSkills(): void {
     this.player.skills = structuredClone(this.ratingService.defaultSkills);
-    this.service.updateOne(this.player).pipe(
+    this.service.updatePlayerSkills(this.player).pipe(
       take(1),
       tap(() => this.loader.off())
     ).subscribe();
   }
 
   save(): void {
-    this.service.updateOne(this.player).pipe(
-      tap((res) => console.log('response: ', res)),
+    this.service.updatePlayerSkills(this.player).pipe(
       tap(() => this.dialogRef.close())
     ).subscribe();
   }

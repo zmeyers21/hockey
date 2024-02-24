@@ -12,14 +12,14 @@ export class PlayerService {
   constructor(private apiService: ApiService) { }
 
   getAll(): Observable<Player[]> {
-    return this.apiService.getAllPlayers();
+    return this.apiService.get('/players');
   }
 
   getOne(id: string): Observable<Player> {
-    return this.apiService.getPlayer(id);
+    return this.apiService.get(`/players/${id}`);
   }
 
-  updateOne(player: DivisionPlayer): Observable<any> {
-    return this.apiService.updatePlayer(player);
+  updatePlayerSkills(player: DivisionPlayer): Observable<any> {
+    return this.apiService.put('/players/skills', player);
   }
 }

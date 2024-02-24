@@ -15,24 +15,9 @@ export class ApiService {
   constructor(private http: HttpClient,
     private loaderService: LoaderService) { }
 
-  // Player Methods
-  getAllPlayers(): Observable<Player[]> {
-    const url = `${this.baseUrl}/players`;
-    return this.get(url);
-  }
-
-  getPlayer(id: string): Observable<Player> {
-    const url = `${this.baseUrl}/players/${id}`;
-    return this.get(url);
-  }
-
-  updatePlayer(player: DivisionPlayer): Observable<DivisionPlayer> {
-    const url = `${this.baseUrl}/players/skills`;
-    return this.put(url, player);
-  }
-
   // Generic methods
-  get(url: string): Observable<any> {
+  get(path: string): Observable<any> {
+    const url = `${this.baseUrl}${path}`
     this.loaderService.on();
     return this.http.get(url, { headers: this.accessHeaders }).pipe(
       tap(() => this.loaderService.off()),
@@ -40,13 +25,16 @@ export class ApiService {
     );
   }
 
-  post(url: string, payload: any,  options?: any): Observable<any> {
+  post(path: string, payload: any,  options?: any): Observable<any> {
+    const url = `${this.baseUrl}${path}`;
+    this.loaderService.on();
     return this.http.post(url, payload, options).pipe(
       catchError((err) => this.handleHttpError(err))
     );
   }
 
-  put(url: string, payload: any,  options?: any): Observable<any> {
+  put(path: string, payload: any,  options?: any): Observable<any> {
+    const url = `${this.baseUrl}${path}`
     return this.http.put(url, payload, options).pipe(
       catchError((err) => this.handleHttpError(err))
     );

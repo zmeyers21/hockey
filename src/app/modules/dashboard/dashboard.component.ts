@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavCard } from 'src/app/shared/models/NavCard.model';
 
 @Component({
@@ -6,23 +6,28 @@ import { NavCard } from 'src/app/shared/models/NavCard.model';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   cards: NavCard[] = [];
+  audio = new Audio();
+  audioPlaying: boolean = false;
 
-  cardClick(card: NavCard): void {
-    console.log('card: ', card);
+  ngOnInit(): void {
+    this.audio.src = '../../assets/audio/nhl94-intro.mp3';
+    this.audio.load();
+    this.audio.onended = () => {
+      this.audioPlaying = false;
+    };
   }
 
   startAudio() {
-    this.playAudio();
+    this.audio.play();
+    this.audioPlaying = true;
   }
 
-  playAudio(){
-    let audio = new Audio();
-    audio.src = '../../assets/audio/nhl94-intro.mp3';
-    audio.load();
-    audio.play();
+  stopAudio() {
+    this.audio.pause();
+    this.audioPlaying = false;
   }
   
 }
