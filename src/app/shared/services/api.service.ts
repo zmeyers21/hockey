@@ -1,9 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { Player } from '../models/Player.model';
 import { LoaderService } from './loader.service';
-import { DivisionPlayer } from '../models/DivisionPlayer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +34,13 @@ export class ApiService {
   put(path: string, payload: any,  options?: any): Observable<any> {
     const url = `${this.baseUrl}${path}`
     return this.http.put(url, payload, options).pipe(
+      catchError((err) => this.handleHttpError(err))
+    );
+  }
+
+  delete(path: string): Observable<any> {
+    const url = `${this.baseUrl}${path}`
+    return this.http.delete(url).pipe(
       catchError((err) => this.handleHttpError(err))
     );
   }

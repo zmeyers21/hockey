@@ -1,5 +1,5 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
-import { filter, tap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { BaseWrapperDirective } from 'src/app/shared/directives/base-wrapper.directive';
 import { Division } from 'src/app/shared/models/Division.model';
 import { NameValue } from 'src/app/shared/models/NameValue.model';
@@ -25,6 +25,14 @@ export class DivisionListComponent extends BaseWrapperDirective implements OnIni
     }
 
   ngOnInit(): void {
+    this.loadDivisions();
+
+    this.subs.sink = this.service.updated$.pipe(
+      tap(() => this.loadDivisions())
+    ).subscribe();
+  }
+
+  loadDivisions(): void {
     this.service.getAll().pipe(
       tap((res) => this.divisions = this.mapDivisions(res))
     ).subscribe();
@@ -40,7 +48,7 @@ export class DivisionListComponent extends BaseWrapperDirective implements OnIni
   }
 
   getDivisionDisplay(division: Division): string {
-    return `${division.city} - ${division.day} (${division.minRating}-${division.maxRating})`;
+    return `${division.city} - ${division.dayOfWeek} (${division.minRating}-${division.maxRating})`;
   }
 
   rowClick(id: string): void {

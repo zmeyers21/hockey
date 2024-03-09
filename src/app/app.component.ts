@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { BaseWrapperDirective } from './shared/directives/base-wrapper.directive';
 import { LoaderService } from './shared/services/loader.service';

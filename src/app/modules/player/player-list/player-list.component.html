@@ -1,3 +1,3 @@
 <div class="list-container">
-  <div *ngFor="let player of players" class="row" (click)="rowClick(player.value)">{{ player.name }}</div>
+  <div *ngFor="let player of players" class="list-item" (click)="rowClick(player.value)">{{ player.name }}</div>
 </div>

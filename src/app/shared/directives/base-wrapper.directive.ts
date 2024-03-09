@@ -1,7 +1,6 @@
 import { Directive, OnDestroy } from "@angular/core";
 import { SubSink } from "subsink";
 import { LoaderService } from "../services/loader.service";
-import { Subject } from "rxjs";
 
 @Directive()
 export abstract class BaseWrapperDirective implements OnDestroy {

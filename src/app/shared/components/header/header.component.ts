@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Tab } from '../../models/Tab.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { AuthService } from '@auth0/auth0-angular';
 import { MenuState } from '../../enums/MenuState.enum';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 import { TabService } from '../../services/tab.service';
+import { filter, tap } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -36,7 +37,15 @@ export class HeaderComponent implements OnInit {
       { title: 'players', route: 'players' },
       { title: 'draft', route: 'draft' }
     ];
-    this.navigate(this.tabs$[0]);
+
+    this.subs.sink = this.router.events.subscribe(
+      (event: any) => {
+        if (event instanceof NavigationEnd) {
+          const route = this.router.url?.split('/')[1];
+          this.tabService.activeTab = this.tabs$.find(x => x.route == route) ?? this.tabs$[0];
+        }
+      }
+    );
   }
 
   isActiveTab(tab: Tab): boolean {
