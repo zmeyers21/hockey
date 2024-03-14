@@ -28,4 +28,9 @@ export class HelperService {
     return Math.floor(Math.random() * max);
   }
 
+  formatDateString(val: string): string {
+    const date = new Date(val);
+    return date.toISOString().substring(0, 10);
+  }
+
 }

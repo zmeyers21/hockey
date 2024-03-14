@@ -14,7 +14,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker'
 
 @NgModule({
   exports: [
@@ -35,6 +36,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatTooltipModule,
     MatSliderModule,
     MatRippleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule
   ],
   declarations: [ ]

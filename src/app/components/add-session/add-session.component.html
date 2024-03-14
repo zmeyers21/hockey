@@ -1,0 +1,62 @@
+<div class="add-session-container">
+
+  <div class="header">
+    Add Session
+  </div>
+
+  <div class="content">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Session Name</mat-label>
+      <input matInput [(ngModel)]="session.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Season</mat-label>
+      <mat-select [(ngModel)]="session.season">
+        <mat-option value="SPRING">SPRING</mat-option>
+        <mat-option value="SUMMER">SUMMER</mat-option>
+        <mat-option value="FALL">FALL</mat-option>
+        <mat-option value="WINTER">WINTER</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="session.startDate">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>How many teams?</mat-label>
+      <mat-select [(ngModel)]="teamCount">
+        <mat-option [value]="2">2</mat-option>
+        <mat-option [value]="3">3</mat-option>
+        <mat-option [value]="4">4</mat-option>
+        <mat-option [value]="5">5</mat-option>
+        <mat-option [value]="6">6</mat-option>
+        <mat-option [value]="7">7</mat-option>
+        <mat-option [value]="8">8</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>How many teams?</mat-label>
+      <mat-select [(ngModel)]="session.status">
+        <mat-option value="NEW">NEW</mat-option>
+        <mat-option value="DRAFTING">DRAFTING</mat-option>
+        <mat-option value="ACTIVE">ACTIVE</mat-option>
+        <mat-option value="COMPLETE">COMPLETE</mat-option>
+        <mat-option value="CANCELLED">CANCELLED</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+  <div class="action-container">
+    <button (click)="close()" class="left">CANCEL</button>
+    <button (click)="save()" class="right">SAVE</button>
+  </div>
+
+</div>

@@ -17,6 +17,10 @@ export abstract class BaseWrapperDirective implements OnDestroy {
     this.loader.off();
   }
 
+  get isLoading(): boolean {
+    return this.loader.loading;
+  }
+
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }

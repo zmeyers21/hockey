@@ -8,10 +8,12 @@ import { MaterialModule } from './core/modules/material.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
+import { AddSessionComponent } from './components/add-session/add-session.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AddSessionComponent,
   ],
   imports: [
     BrowserModule,

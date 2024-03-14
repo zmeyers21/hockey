@@ -1,8 +1,47 @@
 <div class="details-component">
   
-  <div class="header">
-    <h1>{{ division.name }}</h1>
+  <div class="page-header">
+    <h2>{{ division.name | titlecase }}</h2>
     <p>{{ division.description }}</p>
   </div>
+
+  <div class="session-container" *ngIf="!isLoading">
+    <div class="header">
+      Sessions
+    </div>
+
+    <table class="list-table">
+
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Season</th>
+        <th>Teams</th>
+        <th>Players</th>
+        <th>Status</th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let session of sessions$">
+          <td>{{ session.name }}</td>
+          <td>{{ session.startDate.toLocaleString() }}</td>
+          <td>{{ session.season }}</td>
+          <td>{{ session.teams.length }}</td>
+          <td>{{ session.playerCount }}</td>
+          <td>{{ session.status | titlecase }}</td>
+        </tr>
+        <tr>
+          <td colspan="6" class="footer-cell">
+            <button mat-icon-button (click)="addSession()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+
 
 </div>
