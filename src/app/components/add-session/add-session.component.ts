@@ -12,6 +12,7 @@ import { SessionService } from 'src/app/shared/services/session.service';
 export class AddSessionComponent implements OnInit {
 
   teamCount: number;
+  title: string;
 
   constructor(private dialogRef: MatDialogRef<AddSessionComponent>,
     @Inject(MAT_DIALOG_DATA) public session: Session,
@@ -19,11 +20,25 @@ export class AddSessionComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('session: ', this.session);
+    this.teamCount = this.session.teams?.length ?? 4;
   }
 
   save(): void {
-    console.log('session: ', this.session);
+    if (this.session._id) {
+      this.update();
+    } else {
+      this.add();
+    }
+  }
+
+  add(): void {
     this.service.add(this.session).pipe(
+      tap(() => this.close())
+    ).subscribe();
+  }
+
+  update(): void {
+    this.service.update(this.session).pipe(
       tap(() => this.close())
     ).subscribe();
   }

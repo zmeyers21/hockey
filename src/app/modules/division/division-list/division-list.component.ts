@@ -19,9 +19,9 @@ export class DivisionListComponent extends BaseWrapperDirective implements OnIni
 
   constructor(private service: DivisionService,
     private helper: HelperService,
-    public loaderService: LoaderService,
+    public loader: LoaderService,
     private dialogService: DialogService) {
-      super(loaderService)
+      super()
     }
 
   ngOnInit(): void {

@@ -1,1 +1,20 @@
+@use '@angular/material' as mat;
 @import 'src/app/shared/styles/list-styles.scss';
+
+.card {
+  width: 300px;
+  padding: 24px 0;
+  text-align: center;
+  font: 600 24px Arial;
+  border-radius: 4px;
+  background-color: rgb(16, 122, 16);
+  color: #ffffff;
+  margin-top: 64px;
+  @include mat.elevation(4);
+  cursor: pointer;
+}
+
+.card:hover {
+  filter: brightness(.9);
+  scale: 1.02;
+}

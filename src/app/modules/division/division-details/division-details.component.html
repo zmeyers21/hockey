@@ -1,11 +1,11 @@
-<div class="details-component">
+<div class="details-container">
   
   <div class="page-header">
     <h2>{{ division.name | titlecase }}</h2>
     <p>{{ division.description }}</p>
   </div>
 
-  <div class="session-container" *ngIf="!isLoading">
+  <div class="session-container">
     <div class="header">
       Sessions
     </div>
@@ -19,6 +19,7 @@
         <th>Teams</th>
         <th>Players</th>
         <th>Status</th>
+        <th>Actions</th>
       </thead>
 
       <tbody>
@@ -29,19 +30,31 @@
           <td>{{ session.teams.length }}</td>
           <td>{{ session.playerCount }}</td>
           <td>{{ session.status | titlecase }}</td>
-        </tr>
-        <tr>
-          <td colspan="6" class="footer-cell">
-            <button mat-icon-button (click)="addSession()">
-              <mat-icon>add</mat-icon>
+          <td>
+            <button mat-icon-button (click)="viewSession(session)" class="table-action-button">
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button mat-icon-button (click)="editSession(session)" class="table-action-button">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteSession(session)" class="table-action-button">
+              <mat-icon>delete</mat-icon>
             </button>
           </td>
         </tr>
       </tbody>
 
     </table>
+
+    <div class="action-container">
+      <button mat-icon-button (click)="addSession()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 
+</div>
 
-
+<div class="footer">
+  <button mat-raised-button class="center" (click)="close()">DONE</button>
 </div>

@@ -14,13 +14,13 @@ export class AppComponent extends BaseWrapperDirective implements OnInit, AfterC
   loading: boolean = false;
 
   constructor(private authService: AuthenticationService,
-    public loaderService: LoaderService) {
-      super(loaderService);
+    public loader: LoaderService) {
+      super();
     }
 
   ngOnInit(): void {
 
-    this.subs.sink = this.loaderService.loading$.pipe(
+    this.subs.sink = this.loader.loading$.pipe(
       tap((loading) => console.log('loading: ', loading)),
       tap((loading) => this.loading = loading)
     ).subscribe();
@@ -28,9 +28,9 @@ export class AppComponent extends BaseWrapperDirective implements OnInit, AfterC
   }
 
   ngAfterContentInit(): void {
-    this.loaderOn();
+    this.loader.on();
     this.authService.loadToken().pipe(
-      tap(() => this.loaderOff())
+      tap(() => this.loader.off())
     ).subscribe();
   }
 

@@ -1,1 +1,44 @@
+@use '@angular/material' as mat;
 @import 'src/app/shared/styles/list-styles.scss';
+
+.player-container {
+  padding: 12px;
+  width: calc(60% - 24px);
+  height: calc(100% - 76px);
+  margin: 0 auto;
+
+  .table-container {
+    height: 100%;
+    overflow: auto;
+    @include mat.elevation(4);
+  }
+
+  .list-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .sticky {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    th, td {
+      text-align: center;
+    }
+
+    th {
+      padding: 4px 0;
+    }
+
+    .table-action-button {
+      color: rgb(21, 136, 36);
+      scale: 0.8;
+    }
+
+    .footer-cell {
+      padding: 6px 0;
+      text-align: center;
+    }
+  }
+}

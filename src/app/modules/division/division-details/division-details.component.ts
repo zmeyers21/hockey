@@ -25,30 +25,29 @@ export class DivisionDetailsComponent extends BaseWrapperDirective implements On
     private service: DivisionService,
     private dialogService: DialogService,
     private sessionService: SessionService,
-    public loaderService: LoaderService,
+    public loader: LoaderService,
     private helper: HelperService) {
-      super(loaderService);
+      super();
     }
 
   ngOnInit(): void {
-    this.loaderOn();
+    this.loader.on();
     this.sessionService.getAll().pipe(
       tap((res) => this.sessions$ = this.mapSessions(res)),
-      tap(() => this.loaderOff())
+      tap(() => this.loader.off())
     ).subscribe();
 
     this.subs.sink = this.sessionService.updated$.pipe(
-      tap(() => this.loaderOn()),
+      tap(() => this.loader.on()),
       mergeMap(() => this.sessionService.getAll()),
       tap((res) => this.sessions$ = this.mapSessions(res)),
-      tap(() => this.loaderOff())
+      tap(() => this.loader.off())
     ).subscribe();
 
   }
 
   mapSessions(sessions: Session[]): Session[] {
     sessions.forEach(session => {
-      console.log('formatted date: ', this.getFormattedString(session.startDate));
       session.startDate = this.getFormattedString(session.startDate);
     });
     return sessions;
@@ -63,6 +62,22 @@ export class DivisionDetailsComponent extends BaseWrapperDirective implements On
   addSession(): void {
     const session: Session = new Session(this.division, SessionStatus.NEW);
     this.dialogService.addSession(session);
+  }
+
+  editSession(session: Session): void {
+    this.dialogService.addSession(session);
+  }
+
+  viewSession(session: Session): void {
+    
+  }
+
+  deleteSession(session: Session): void {
+    if (session._id && session.status == SessionStatus.NEW) {
+      this.sessionService.deleteOne(session._id).subscribe();
+    } else {
+      alert('You probably don\'t want to do that...');
+    }
   }
 
   getFormattedString(date: string): string {

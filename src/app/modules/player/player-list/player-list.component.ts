@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { tap } from 'rxjs';
 import { BaseWrapperDirective } from 'src/app/shared/directives/base-wrapper.directive';
-import { NameValue } from 'src/app/shared/models/NameValue.model';
 import { Player } from 'src/app/shared/models/Player.model';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
-import { LoaderService } from 'src/app/shared/services/loader.service';
 import { PlayerService } from 'src/app/shared/services/player.service';
 
 @Component({
@@ -15,28 +15,27 @@ import { PlayerService } from 'src/app/shared/services/player.service';
 })
 export class PlayerListComponent extends BaseWrapperDirective implements OnInit {
 
-  players: NameValue[] = [];
+  players: Player[] = [];
+  displayedColumns: string[] = ['lastName', 'firstName', 'email', 'phone', 'actions'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource = new MatTableDataSource<Player>([]);
 
   constructor(private service: PlayerService,
     private helper: HelperService,
-    private dialogService: DialogService,
-    public loaderService: LoaderService) {
-      super(loaderService)
+    private dialogService: DialogService) {
+      super();
     }
 
   ngOnInit(): void {
     this.service.getAll().pipe(
-      tap((res) => this.players = this.mapPlayers(res))
+      tap((res) => this.mapPlayers(res)),
+      tap(() => this.dataSource.paginator = this.paginator)
     ).subscribe();
   }
 
-  mapPlayers(players: Player[]): NameValue[] {
-    return players.sort((a, b) => this.helper.compare(a, b, 'lastName')).map(x => {
-      return {
-        name: this.getFullName(x),
-        value: x._id
-      }
-    })
+  mapPlayers(players: Player[]): void {
+    const sortedPlayers = players.sort((a, b) => this.helper.compare(a, b, 'lastName'));
+    this.dataSource = new MatTableDataSource<Player>(sortedPlayers);
   }
 
   getFullName(player: Player): string {
@@ -47,6 +46,18 @@ export class PlayerListComponent extends BaseWrapperDirective implements OnInit 
     this.service.getOne(id).pipe(
       tap((res) => this.dialogService.playerDetails(res))
     ).subscribe();
+  }
+
+  viewPlayer(player: Player): void {
+    alert('Coming Soon!');
+  }
+
+  editPlayer(player: Player): void {
+    alert('Coming Soon!');
+  }
+
+  deletePlayer(player: Player): void {
+    alert('Coming Soon!');
   }
 
 }

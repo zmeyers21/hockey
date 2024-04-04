@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Tab } from '../../models/Tab.model';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { AuthService } from '@auth0/auth0-angular';
 import { MenuState } from '../../enums/MenuState.enum';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 import { TabService } from '../../services/tab.service';
-import { filter, tap } from 'rxjs';
 
 @Component({
   selector: 'app-header',

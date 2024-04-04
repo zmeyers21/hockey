@@ -23,11 +23,25 @@ export class SessionService {
     return this.apiService.get(path);
   }
 
+  deleteOne(id: string): Observable<Session> {
+    const path = `/sessions/${id}`;
+    return this.apiService.delete(path).pipe(
+      tap(() => this.sessionsUpdated.next(null))
+    );
+  }
+
   add(session: Session): Observable<any> {
     const path = '/sessions';
     return this.apiService.post(path, session).pipe(
       tap(() => this.sessionsUpdated.next(null))
     );
+  }
+
+  update(session: Session): Observable<any> {
+    const path = '/sessions';
+    return this.apiService.put(path, session).pipe(
+      tap(() => this.sessionsUpdated.next(null))
+    )
   }
 
 }
